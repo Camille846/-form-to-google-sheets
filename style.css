@@ -17,7 +17,7 @@
 
     /* Font Size */
     --h1-font-size: 1.5rem;
-    --normal-font-size: 1rem;
+    --normal-font-size: .9rem;
     --small-font-size: .75rem;
     --smaller-font-size: .60rem;
 }
@@ -26,7 +26,7 @@
     :root{
          /* font-size */
         --h1-font-size: 2rem;
-        --normal-font-size: 1.20rem;
+        --normal-font-size: 1rem;
         --small-font-size: .875rem;
         --smaller-font-size: .75rem;
     }
@@ -93,18 +93,99 @@ input::placeholder{
 }
 
 .submit{
+    position: relative;
+    display: block;
+    width: 170px;
+    height: 40px;
+    border-radius: 18px;
     cursor: pointer;
-    padding: 1rem 1.5rem;
-    border-radius: 10px;
+    /* padding: 1rem 1.5rem; */
+    text-align: center;
     text-transform: uppercase;
     background-color: var(--white);
+    border: solid 1px transparent;
     font-weight: var(--semi-bold);
     color: var(--dark-blue);
-    transition: background .5s;
+    transition: all .1s ease-in-out;
 }
 
 .submit:hover{
-    background-color: var(--grey);
+    background-color: transparent;
+    border-color: var(--white);
+    color: var(--white);
+    transition: all .1s ease-in-out;
+}
+
+.loader{
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: solid 2px #424242;
+    border-top: solid 2px var(--white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto 0 auto;
+    opacity: 0;
+}
+
+.check{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translate3d(-4px,50px,0);
+    opacity: 0;
+}
+
+.check span:nth-child(1){
+    display: block;
+    width: 10px;
+    height: 2px;
+    background-color: var(--white);
+    transform: rotate(45deg);
+}
+
+.check span:nth-child(2){
+    display: block;
+    width: 15px;
+    height: 2px;
+    background-color: var(--white);
+    transform: rotate(-45deg) translate3d(12px, -3px, 0);
+    transform-origin: 100%;
+}
+
+.check.active {
+    opacity: 1;
+    transform: translate3d(-4px,4px,0);
+    transition: all .5s cubic-bezier(.49, 1.74, .38, 1.74);
+    transition-delay: .2s;
+}
+
+.loader.active {
+    animation: loading 2s ease-in-out ; 
+    animation-fill-mode: forwards;
+}
+
+@keyframes loading {
+    30% {
+      opacity:1; 
+    }
+    
+    85% {
+      opacity:1;
+      transform: rotate(1080deg);
+      border-color: #262626;
+    }
+
+    100% {
+      opacity:1;
+      transform: rotate(1080deg);
+       border-color: var(--white);
+    }
 }
 
 @media screen and (min-width:968px){
